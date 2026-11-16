@@ -132,9 +132,22 @@
                     </p>
                 </div>
 
-                <!-- Контейнер встроенного рекламного баннера -->
-                <div id="ad-banner-main" class="rounded-xl bg-slate-950/75 border border-slate-800/90 min-h-[66px] flex items-center justify-center p-2 overflow-hidden">
+                <!-- Прямое нативное размещение скрипта Adsterra в корне документа -->
+                <div id="ad-banner-main" class="rounded-xl bg-slate-950/75 border border-slate-800/90 min-h-[66px] flex flex-col items-center justify-center p-2 overflow-hidden">
+                    <script>
+                      atOptions = {
+                        'key' : '6ab63ef9be98aabcac080c45ee857c46',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                      };
+                    </script>
+                    <script src="https://bauval.org/22/6ab63ef9be98aabcac080c45ee857c46"></script>
                 </div>
+                <p id="ad-fallback-hint" class="hidden text-center text-[11px] text-slate-500 mt-2">
+                    Баннер не отобразился: возможно, в браузере включён блокировщик рекламы (ABP) или заблокирован домен рекламной сети.
+                </p>
             </section>
 
             <!-- 2. Карточка с описанием игры и кнопкой «ИГРАТЬ» -->
@@ -312,179 +325,6 @@
     </div>
 
     <script>
-    /**
-     * ============================================================================
-     * 0. ВСТРОЕННЫЙ РЕКЛАМНЫЙ МОДУЛЬ КОМАНДЫ GOOGLEGBOMBARS-HYDROGEBATS
-     * ============================================================================
-     */
-    const SITE_AD_CONFIG = {
-        priorityOrder: ['adsterra', 'yandex', 'vk', 'adsense', 'monetag'],
-        adsterra: {
-            key: '6ab63ef9be98aabcac080c45ee857c46',
-            scriptUrl: 'https://bauval.org/22/6ab63ef9be98aabcac080c45ee857c46',
-            width: 320,
-            height: 50
-        },
-        yandex: {
-            blockId: ''
-        },
-        vk: {
-            slotId: ''
-        },
-        adsense: {
-            client: '',
-            slot: ''
-        },
-        monetag: {
-            zoneId: ''
-        }
-    };
-
-    class AdMonetizationManager {
-        static init() {
-            const container = document.getElementById('ad-banner-main');
-            if (!container) return;
-
-            const activeQueue = SITE_AD_CONFIG.priorityOrder.filter((net) => {
-                if (net === 'adsterra') return !!(SITE_AD_CONFIG.adsterra.key && SITE_AD_CONFIG.adsterra.scriptUrl);
-                if (net === 'yandex') return !!SITE_AD_CONFIG.yandex.blockId;
-                if (net === 'vk') return !!SITE_AD_CONFIG.vk.slotId;
-                if (net === 'adsense') return !!(SITE_AD_CONFIG.adsense.client && SITE_AD_CONFIG.adsense.slot);
-                if (net === 'monetag') return !!SITE_AD_CONFIG.monetag.zoneId;
-                return false;
-            });
-
-            if (activeQueue.length === 0) return;
-            this.runWaterfall(activeQueue, 0, container);
-        }
-
-        static runWaterfall(queue, index, container) {
-            if (index >= queue.length) return;
-
-            const provider = queue[index];
-            const next = () => this.runWaterfall(queue, index + 1, container);
-
-            if (provider === 'adsterra') {
-                const frame = document.createElement('iframe');
-                frame.width = String(SITE_AD_CONFIG.adsterra.width || 320);
-                frame.height = String(SITE_AD_CONFIG.adsterra.height || 50);
-                frame.style.border = 'none';
-                frame.style.overflow = 'hidden';
-                frame.style.display = 'block';
-                frame.style.margin = '0 auto';
-                frame.scrolling = 'no';
-                container.innerHTML = '';
-                container.appendChild(frame);
-
-                const doc = frame.contentWindow && frame.contentWindow.document;
-                if (doc) {
-                    const safeKey = SITE_AD_CONFIG.adsterra.key.replace(/'/g, '');
-                    const safeSrc = SITE_AD_CONFIG.adsterra.scriptUrl.replace(/"/g, '');
-                    doc.open();
-                    doc.write(`<!DOCTYPE html><html><body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:transparent;overflow:hidden;">
-                        <script>
-                            atOptions = {
-                                'key' : '${safeKey}',
-                                'format' : 'iframe',
-                                'height' : ${SITE_AD_CONFIG.adsterra.height || 50},
-                                'width' : ${SITE_AD_CONFIG.adsterra.width || 320},
-                                'params' : {}
-                            };
-                        <\/script>
-                        <script src="${safeSrc}"><\/script>
-                    </body></html>`);
-                    doc.close();
-                } else {
-                    next();
-                }
-
-            } else if (provider === 'yandex') {
-                container.innerHTML = `<div id="yandex_rtb_slot" class="w-full flex justify-center"></div>`;
-                window.yaContextCb = window.yaContextCb || [];
-
-                if (!document.querySelector('script[src*="yandex.ru/ads/system/context.js"]')) {
-                    const s = document.createElement('script');
-                    s.src = 'https://yandex.ru/ads/system/context.js';
-                    s.async = true;
-                    s.onerror = next;
-                    document.head.appendChild(s);
-                }
-
-                let settled = false;
-                const fallbackTimer = setTimeout(() => {
-                    if (!settled) { settled = true; next(); }
-                }, 4500);
-
-                window.yaContextCb.push(() => {
-                    try {
-                        Ya.Context.AdvManager.render({
-                            blockId: SITE_AD_CONFIG.yandex.blockId,
-                            renderTo: 'yandex_rtb_slot',
-                            onRender: () => {
-                                settled = true;
-                                clearTimeout(fallbackTimer);
-                            },
-                            onError: () => {
-                                if (!settled) {
-                                    settled = true;
-                                    clearTimeout(fallbackTimer);
-                                    next();
-                                }
-                            }
-                        });
-                    } catch (e) {
-                        if (!settled) { settled = true; clearTimeout(fallbackTimer); next(); }
-                    }
-                });
-
-            } else if (provider === 'vk') {
-                container.innerHTML = `<ins class="mrg-tag" style="display:inline-block;width:100%;min-height:90px" data-ad-client="ad-${SITE_AD_CONFIG.vk.slotId}" data-ad-slot="${SITE_AD_CONFIG.vk.slotId}"></ins>`;
-
-                if (!document.querySelector('script[src*="ad.mail.ru/static/ads-async.js"]')) {
-                    const s = document.createElement('script');
-                    s.src = 'https://ad.mail.ru/static/ads-async.js';
-                    s.async = true;
-                    s.onerror = next;
-                    document.head.appendChild(s);
-                }
-
-                try {
-                    (window.MRGtag = window.MRGtag || []).push({});
-                } catch (e) {
-                    next();
-                }
-
-            } else if (provider === 'adsense') {
-                container.innerHTML = `<ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="${SITE_AD_CONFIG.adsense.client}" data-ad-slot="${SITE_AD_CONFIG.adsense.slot}" data-ad-format="auto" data-full-width-responsive="true"></ins>`;
-
-                if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
-                    const s = document.createElement('script');
-                    s.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${encodeURIComponent(SITE_AD_CONFIG.adsense.client)}`;
-                    s.async = true;
-                    s.crossOrigin = 'anonymous';
-                    s.onerror = next;
-                    document.head.appendChild(s);
-                }
-
-                try {
-                    (window.adsbygoogle = window.adsbygoogle || []).push({});
-                } catch (e) {
-                    next();
-                }
-
-            } else if (provider === 'monetag') {
-                const s = document.createElement('script');
-                s.src = 'https://alwingulla.com/88/tag.min.js';
-                s.setAttribute('data-zone', SITE_AD_CONFIG.monetag.zoneId);
-                s.async = true;
-                s.setAttribute('data-cfasync', 'false');
-                s.onerror = next;
-                container.innerHTML = '';
-                container.appendChild(s);
-            }
-        }
-    }
-
     /**
      * ============================================================================
      * 1. ГЕНЕРАТОР ПРОЦЕДУРНЫХ PBR-ТЕКСТУР (DIFFUSE + SOBEL NORMAL MAPS)
@@ -4117,8 +3957,15 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        AdMonetizationManager.init();
         window.gameApp = new ApartmentController();
+
+        setTimeout(() => {
+            const adBox = document.getElementById('ad-banner-main');
+            const hint = document.getElementById('ad-fallback-hint');
+            if (adBox && hint && !adBox.querySelector('iframe, img, ins')) {
+                hint.classList.remove('hidden');
+            }
+        }, 4500);
     });
     </script>
 </body>

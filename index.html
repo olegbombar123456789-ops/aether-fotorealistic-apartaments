@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="description" content="Уютная Квартира 3D — бесплатная браузерная 3D-игра с фотореалистичными PBR-текстурами, шейдерами дождя, рабочим 7-этажным лифтом и поддержкой мобильного управления.">
-    <meta name="keywords" content="Уютная Квартира 3D, браузерная 3D игра, WebGL игра, симулятор квартиры, лифт 3D, играть онлайн бесплатно">
+    <meta name="keywords" content="Уютная Квартира 3D, браузерная 3D игра, WebGL игра, симулятор квартиры, лифт 3D, играть онлайн бесплатно, Googlegbombars-hydrogebats">
     <title>Уютная Квартира 3D — Бесплатная браузерная 3D-игра с PBR-графикой и лифтом</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -111,22 +111,12 @@
             z-index: 10;
             touch-action: none;
         }
-        .ad-slot-frame {
-            background: repeating-linear-gradient(
-                -45deg,
-                rgba(30, 41, 59, 0.42),
-                rgba(30, 41, 59, 0.42) 10px,
-                rgba(15, 23, 42, 0.55) 10px,
-                rgba(15, 23, 42, 0.55) 20px
-            );
-            border: 1px dashed rgba(251, 191, 36, 0.30);
-        }
     </style>
 </head>
 <body class="text-slate-100 antialiased">
 
     <!-- ========================================================================
-         ГЛАВНОЕ МЕНЮ (ПЕРВЫЙ ЭКРАН: РЕКЛАМА С ПРЕДУПРЕЖДЕНИЕМ -> ОПИСАНИЕ -> ИГРАТЬ)
+         ГЛАВНОЕ МЕНЮ (РЕКЛАМА С ПРЕДУПРЕЖДЕНИЕМ -> ОПИСАНИЕ -> ИГРАТЬ)
          ======================================================================== -->
     <div id="main-menu-screen" class="min-h-screen w-full bg-[radial-gradient(ellipse_at_top,_#162038_0%,_#090d16_70%)] px-4 py-6 sm:py-10 flex flex-col items-center justify-center">
         <div class="w-full max-w-2xl space-y-5">
@@ -142,41 +132,22 @@
                     </p>
                 </div>
 
-                <!-- Статус каскада рекламных сетей -->
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2 text-[11px] text-slate-400">
-                    <div class="flex items-center gap-1.5">
-                        <span id="ad-status-dot" class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span>
-                        <span id="ad-status-text">Ожидание ID рекламных сетей (Яндекс РСЯ • VK • AdSense • Adsterra • Monetag)</span>
-                    </div>
-                    <button id="open-ad-setup-btn" type="button" class="px-2.5 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 border border-slate-700 text-amber-300 font-medium transition cursor-pointer">
-                        Подключить ID
-                    </button>
-                </div>
-
-                <!-- Контейнер каскадного рендера рекламы -->
-                <div id="ad-banner-main" class="ad-slot-frame rounded-xl min-h-[100px] flex flex-col sm:flex-row items-center justify-between gap-3 px-4 py-3.5 overflow-hidden">
-                    <div class="flex items-center gap-3">
-                        <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-400/30 text-amber-300 font-bold text-xs shrink-0">
-                            РЕКЛАМА
-                        </span>
-                        <div class="text-left">
-                            <div class="text-xs sm:text-sm font-semibold text-slate-200">
-                                Мультисетевой рекламный слот (5 сетей с авто-переключением)
-                            </div>
-                            <div class="text-[11px] text-slate-400 mt-0.5">
-                                Реальная реклама начнёт отображаться после публикации сайта на хостинг (HTTPS) и указания ваших ID блоков. Внутри 3D-игры рекламы нет.
-                            </div>
-                        </div>
-                    </div>
+                <!-- Контейнер встроенного рекламного баннера -->
+                <div id="ad-banner-main" class="rounded-xl bg-slate-950/75 border border-slate-800/90 min-h-[66px] flex items-center justify-center p-2 overflow-hidden">
                 </div>
             </section>
 
             <!-- 2. Карточка с описанием игры и кнопкой «ИГРАТЬ» -->
             <main class="menu-card rounded-3xl p-6 sm:p-8 space-y-6">
                 <div class="space-y-2">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/25 text-amber-300 text-xs font-medium">
-                        <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                        3D Симулятор • PBR Шейдеры • 7 Этажей
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/25 text-amber-300 text-xs font-medium">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                            3D Симулятор • PBR Шейдеры • 7 Этажей
+                        </span>
+                        <span class="inline-flex items-center px-3 py-1 rounded-full bg-sky-500/10 border border-sky-400/20 text-sky-300 text-xs font-medium">
+                            Googlegbombars-hydrogebats
+                        </span>
                     </div>
                     <h1 class="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
                         Уютная Квартира 3D
@@ -212,13 +183,16 @@
                 </div>
 
                 <!-- Кнопка запуска игры на весь экран -->
-                <div class="pt-1">
+                <div class="pt-1 space-y-3">
                     <button id="start-game-btn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-500 hover:from-amber-300 hover:to-orange-400 text-slate-950 font-extrabold text-base sm:text-lg tracking-wide shadow-xl shadow-amber-500/25 active:scale-[0.98] transition flex items-center justify-center gap-3 cursor-pointer">
                         <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
                         <span>ИГРАТЬ</span>
                     </button>
+                    <p class="text-center text-[11px] text-slate-500">
+                        Студия Googlegbombars-hydrogebats • Внутри 3D-игры рекламы нет
+                    </p>
                 </div>
             </main>
         </div>
@@ -337,188 +311,94 @@
         </div>
     </div>
 
-    <!-- Модальное окно настройки ID рекламных сетей -->
-    <div id="ad-setup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4">
-        <div class="hud-panel max-w-lg w-full rounded-3xl p-5 text-slate-200 flex flex-col max-h-[88vh] overflow-y-auto space-y-3.5">
-            <div class="flex items-center justify-between">
-                <h2 class="text-sm sm:text-base font-bold text-amber-300">Подключение рекламных сетей (Waterfall)</h2>
-                <button id="close-ad-setup-btn" class="text-slate-400 hover:text-white text-lg px-2">✕</button>
-            </div>
-
-            <p class="text-xs text-slate-300 leading-relaxed">
-                Рекламные сети не показывают объявления при открытии файла локально с телефона (<code>content://</code> или <code>file://</code>) без ID партнёра. Укажите ID хотя бы одной сети и загрузите файл на ваш хостинг:
-            </p>
-
-            <div class="space-y-2.5 text-xs">
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">1. Яндекс РСЯ — ID блока (<code>blockId</code>)</label>
-                    <input id="inp-ad-yandex" type="text" placeholder="Например: R-A-1234567-1" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">2. Рекламная сеть VK (myTarget) — ID слота (<code>slot_id</code>)</label>
-                    <input id="inp-ad-vk" type="text" placeholder="Например: 1584920" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    <div>
-                        <label class="block text-slate-300 font-medium mb-1">3. Google AdSense — Client ID</label>
-                        <input id="inp-ad-adsense-client" type="text" placeholder="ca-pub-0000000000000000" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                    </div>
-                    <div>
-                        <label class="block text-slate-300 font-medium mb-1">AdSense — Slot ID</label>
-                        <input id="inp-ad-adsense-slot" type="text" placeholder="1234567890" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">4. Adsterra — Banner Key (320x50 / 728x90)</label>
-                    <input id="inp-ad-adsterra" type="text" placeholder="32-символьный ключ блока Adsterra" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                </div>
-                <div>
-                    <label class="block text-slate-300 font-medium mb-1">5. Monetag (PropellerAds) — Zone ID</label>
-                    <input id="inp-ad-monetag" type="text" placeholder="Например: 8492015" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-                </div>
-            </div>
-
-            <div class="flex flex-wrap items-center justify-end gap-2 pt-2 border-t border-slate-800">
-                <button id="copy-ad-config-btn" type="button" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition">
-                    Скопировать код конфига
-                </button>
-                <button id="apply-ad-setup-btn" type="button" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition">
-                    Применить и проверить
-                </button>
-            </div>
-        </div>
-    </div>
-
     <script>
     /**
      * ============================================================================
-     * 0. МУЛЬТИСЕТЕВОЙ КАСКАДНЫЙ МЕНЕДЖЕР РЕКЛАМЫ (WATERFALL MONETIZATION)
-     * Поддерживает: Яндекс РСЯ, VK Рекламу, Google AdSense, Adsterra и Monetag.
-     * Впишите ваши ID ниже перед загрузкой игры на хостинг.
+     * 0. ВСТРОЕННЫЙ РЕКЛАМНЫЙ МОДУЛЬ КОМАНДЫ GOOGLEGBOMBARS-HYDROGEBATS
      * ============================================================================
      */
     const SITE_AD_CONFIG = {
-        priorityOrder: ['yandex', 'vk', 'adsense', 'adsterra', 'monetag'],
-        yandex: {
-            blockId: '' // Например: 'R-A-1234567-1'
-        },
-        vk: {
-            slotId: '' // Например: '1584920'
-        },
-        adsense: {
-            client: '', // Например: 'ca-pub-0000000000000000'
-            slot: ''    // Например: '1234567890'
-        },
+        priorityOrder: ['adsterra', 'yandex', 'vk', 'adsense', 'monetag'],
         adsterra: {
-            key: '',    // Ключ баннера 320x50 или 728x90 из кабинета Adsterra
+            key: '6ab63ef9be98aabcac080c45ee857c46',
+            scriptUrl: 'https://bauval.org/22/6ab63ef9be98aabcac080c45ee857c46',
             width: 320,
             height: 50
         },
+        yandex: {
+            blockId: ''
+        },
+        vk: {
+            slotId: ''
+        },
+        adsense: {
+            client: '',
+            slot: ''
+        },
         monetag: {
-            zoneId: ''  // ID зоны из кабинета Monetag (PropellerAds)
+            zoneId: ''
         }
     };
 
     class AdMonetizationManager {
-        static setStatus(text, colorClass = 'bg-amber-400') {
-            const dot = document.getElementById('ad-status-dot');
-            const label = document.getElementById('ad-status-text');
-            if (dot) {
-                dot.className = `w-2 h-2 rounded-full ${colorClass} inline-block`;
-            }
-            if (label) {
-                label.textContent = text;
-            }
-        }
-
-        static bindConfigUI() {
-            const modal = document.getElementById('ad-setup-modal');
-            const openBtn = document.getElementById('open-ad-setup-btn');
-            const closeBtn = document.getElementById('close-ad-setup-btn');
-            const applyBtn = document.getElementById('apply-ad-setup-btn');
-            const copyBtn = document.getElementById('copy-ad-config-btn');
-
-            if (!modal || !openBtn) return;
-
-            openBtn.addEventListener('click', () => {
-                document.getElementById('inp-ad-yandex').value = SITE_AD_CONFIG.yandex.blockId;
-                document.getElementById('inp-ad-vk').value = SITE_AD_CONFIG.vk.slotId;
-                document.getElementById('inp-ad-adsense-client').value = SITE_AD_CONFIG.adsense.client;
-                document.getElementById('inp-ad-adsense-slot').value = SITE_AD_CONFIG.adsense.slot;
-                document.getElementById('inp-ad-adsterra').value = SITE_AD_CONFIG.adsterra.key;
-                document.getElementById('inp-ad-monetag').value = SITE_AD_CONFIG.monetag.zoneId;
-                modal.classList.remove('hidden');
-            });
-
-            closeBtn.addEventListener('click', () => modal.classList.add('hidden'));
-
-            applyBtn.addEventListener('click', () => {
-                SITE_AD_CONFIG.yandex.blockId = document.getElementById('inp-ad-yandex').value.trim();
-                SITE_AD_CONFIG.vk.slotId = document.getElementById('inp-ad-vk').value.trim();
-                SITE_AD_CONFIG.adsense.client = document.getElementById('inp-ad-adsense-client').value.trim();
-                SITE_AD_CONFIG.adsense.slot = document.getElementById('inp-ad-adsense-slot').value.trim();
-                SITE_AD_CONFIG.adsterra.key = document.getElementById('inp-ad-adsterra').value.trim();
-                SITE_AD_CONFIG.monetag.zoneId = document.getElementById('inp-ad-monetag').value.trim();
-
-                modal.classList.add('hidden');
-                this.init();
-            });
-
-            copyBtn.addEventListener('click', () => {
-                const snippet = `const SITE_AD_CONFIG = ${JSON.stringify(SITE_AD_CONFIG, null, 4)};`;
-                try {
-                    navigator.clipboard.writeText(snippet);
-                    this.setStatus('Конфиг SITE_AD_CONFIG скопирован в буфер обмена', 'bg-emerald-400');
-                } catch (e) {
-                    const ta = document.createElement('textarea');
-                    ta.value = snippet;
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                    this.setStatus('Конфиг SITE_AD_CONFIG скопирован', 'bg-emerald-400');
-                }
-            });
-        }
-
         static init() {
             const container = document.getElementById('ad-banner-main');
             if (!container) return;
 
             const activeQueue = SITE_AD_CONFIG.priorityOrder.filter((net) => {
+                if (net === 'adsterra') return !!(SITE_AD_CONFIG.adsterra.key && SITE_AD_CONFIG.adsterra.scriptUrl);
                 if (net === 'yandex') return !!SITE_AD_CONFIG.yandex.blockId;
                 if (net === 'vk') return !!SITE_AD_CONFIG.vk.slotId;
                 if (net === 'adsense') return !!(SITE_AD_CONFIG.adsense.client && SITE_AD_CONFIG.adsense.slot);
-                if (net === 'adsterra') return !!SITE_AD_CONFIG.adsterra.key;
                 if (net === 'monetag') return !!SITE_AD_CONFIG.monetag.zoneId;
                 return false;
             });
 
-            if (activeQueue.length === 0) {
-                const isLocal = window.location.protocol === 'file:' || window.location.protocol === 'content:';
-                this.setStatus(
-                    isLocal
-                        ? 'Локальный режим: для показа рекламы загрузите игру на хостинг и укажите ID'
-                        : 'Ожидание ID рекламных сетей (Яндекс РСЯ • VK • AdSense • Adsterra • Monetag)',
-                    'bg-amber-400'
-                );
-                return;
-            }
-
+            if (activeQueue.length === 0) return;
             this.runWaterfall(activeQueue, 0, container);
         }
 
         static runWaterfall(queue, index, container) {
-            if (index >= queue.length) {
-                this.setStatus('Ни одна из указанных сетей не вернула объявление (проверьте домен или AdBlock)', 'bg-rose-400');
-                return;
-            }
+            if (index >= queue.length) return;
 
             const provider = queue[index];
             const next = () => this.runWaterfall(queue, index + 1, container);
 
-            if (provider === 'yandex') {
-                this.setStatus(`Загрузка Яндекс РСЯ (${SITE_AD_CONFIG.yandex.blockId})...`, 'bg-sky-400');
+            if (provider === 'adsterra') {
+                const frame = document.createElement('iframe');
+                frame.width = String(SITE_AD_CONFIG.adsterra.width || 320);
+                frame.height = String(SITE_AD_CONFIG.adsterra.height || 50);
+                frame.style.border = 'none';
+                frame.style.overflow = 'hidden';
+                frame.style.display = 'block';
+                frame.style.margin = '0 auto';
+                frame.scrolling = 'no';
+                container.innerHTML = '';
+                container.appendChild(frame);
+
+                const doc = frame.contentWindow && frame.contentWindow.document;
+                if (doc) {
+                    const safeKey = SITE_AD_CONFIG.adsterra.key.replace(/'/g, '');
+                    const safeSrc = SITE_AD_CONFIG.adsterra.scriptUrl.replace(/"/g, '');
+                    doc.open();
+                    doc.write(`<!DOCTYPE html><html><body style="margin:0;padding:0;display:flex;justify-content:center;align-items:center;background:transparent;overflow:hidden;">
+                        <script>
+                            atOptions = {
+                                'key' : '${safeKey}',
+                                'format' : 'iframe',
+                                'height' : ${SITE_AD_CONFIG.adsterra.height || 50},
+                                'width' : ${SITE_AD_CONFIG.adsterra.width || 320},
+                                'params' : {}
+                            };
+                        <\/script>
+                        <script src="${safeSrc}"><\/script>
+                    </body></html>`);
+                    doc.close();
+                } else {
+                    next();
+                }
+
+            } else if (provider === 'yandex') {
                 container.innerHTML = `<div id="yandex_rtb_slot" class="w-full flex justify-center"></div>`;
                 window.yaContextCb = window.yaContextCb || [];
 
@@ -543,7 +423,6 @@
                             onRender: () => {
                                 settled = true;
                                 clearTimeout(fallbackTimer);
-                                this.setStatus('Активна сеть: Яндекс РСЯ', 'bg-emerald-400');
                             },
                             onError: () => {
                                 if (!settled) {
@@ -559,7 +438,6 @@
                 });
 
             } else if (provider === 'vk') {
-                this.setStatus(`Загрузка Рекламной сети VK (${SITE_AD_CONFIG.vk.slotId})...`, 'bg-sky-400');
                 container.innerHTML = `<ins class="mrg-tag" style="display:inline-block;width:100%;min-height:90px" data-ad-client="ad-${SITE_AD_CONFIG.vk.slotId}" data-ad-slot="${SITE_AD_CONFIG.vk.slotId}"></ins>`;
 
                 if (!document.querySelector('script[src*="ad.mail.ru/static/ads-async.js"]')) {
@@ -572,13 +450,11 @@
 
                 try {
                     (window.MRGtag = window.MRGtag || []).push({});
-                    this.setStatus('Активна сеть: Рекламная сеть VK', 'bg-emerald-400');
                 } catch (e) {
                     next();
                 }
 
             } else if (provider === 'adsense') {
-                this.setStatus('Загрузка Google AdSense...', 'bg-sky-400');
                 container.innerHTML = `<ins class="adsbygoogle" style="display:block;width:100%" data-ad-client="${SITE_AD_CONFIG.adsense.client}" data-ad-slot="${SITE_AD_CONFIG.adsense.slot}" data-ad-format="auto" data-full-width-responsive="true"></ins>`;
 
                 if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
@@ -592,51 +468,16 @@
 
                 try {
                     (window.adsbygoogle = window.adsbygoogle || []).push({});
-                    this.setStatus('Активна сеть: Google AdSense', 'bg-emerald-400');
                 } catch (e) {
                     next();
                 }
 
-            } else if (provider === 'adsterra') {
-                this.setStatus('Загрузка Adsterra...', 'bg-sky-400');
-                const frame = document.createElement('iframe');
-                frame.width = String(SITE_AD_CONFIG.adsterra.width || 320);
-                frame.height = String(SITE_AD_CONFIG.adsterra.height || 50);
-                frame.style.border = 'none';
-                frame.style.overflow = 'hidden';
-                frame.scrolling = 'no';
-                container.innerHTML = '';
-                container.appendChild(frame);
-
-                const doc = frame.contentWindow && frame.contentWindow.document;
-                if (doc) {
-                    doc.open();
-                    doc.write(`<!DOCTYPE html><html><body style="margin:0;padding:0;display:flex;justify-content:center;background:transparent;">
-                        <script>
-                            atOptions = {
-                                'key' : '${SITE_AD_CONFIG.adsterra.key.replace(/'/g, '')}',
-                                'format' : 'iframe',
-                                'height' : ${SITE_AD_CONFIG.adsterra.height || 50},
-                                'width' : ${SITE_AD_CONFIG.adsterra.width || 320},
-                                'params' : {}
-                            };
-                        <\/script>
-                        <script src="https://www.highperformanceformat.com/${encodeURIComponent(SITE_AD_CONFIG.adsterra.key)}/invoke.js"><\/script>
-                    </body></html>`);
-                    doc.close();
-                    this.setStatus('Активна сеть: Adsterra', 'bg-emerald-400');
-                } else {
-                    next();
-                }
-
             } else if (provider === 'monetag') {
-                this.setStatus(`Загрузка Monetag (${SITE_AD_CONFIG.monetag.zoneId})...`, 'bg-sky-400');
                 const s = document.createElement('script');
                 s.src = 'https://alwingulla.com/88/tag.min.js';
                 s.setAttribute('data-zone', SITE_AD_CONFIG.monetag.zoneId);
                 s.async = true;
                 s.setAttribute('data-cfasync', 'false');
-                s.onload = () => this.setStatus('Активна сеть: Monetag (PropellerAds)', 'bg-emerald-400');
                 s.onerror = next;
                 container.innerHTML = '';
                 container.appendChild(s);
@@ -953,7 +794,6 @@
 
             for (let y = 0; y < size; y++) {
                 for (let x = 0; x < size; x++) {
-                    // Мелкая «шагрень» порошковой эмали на стальных панелях лифта
                     const peel = this.fbm(x * 0.28, y * 0.28, 2) * 0.65 + this.hash2(x * 0.7, y * 0.7) * 0.35;
                     height[y * size + x] = peel;
 
@@ -977,7 +817,6 @@
             canvas.height = 384;
             const ctx = canvas.getContext('2d');
 
-            // Отражение светло-серых стен и потолка кабины
             const bgGrad = ctx.createLinearGradient(0, 0, 0, 384);
             bgGrad.addColorStop(0, '#cfd5dc');
             bgGrad.addColorStop(0.28, '#bcc4ce');
@@ -985,7 +824,6 @@
             ctx.fillStyle = bgGrad;
             ctx.fillRect(0, 0, 256, 384);
 
-            // Отражение потолочных точечных светильников
             const drawSpot = (sx, sy) => {
                 const g = ctx.createRadialGradient(sx, sy, 2, sx, sy, 22);
                 g.addColorStop(0, 'rgba(255, 253, 245, 0.95)');
@@ -999,7 +837,6 @@
             drawSpot(76, 38);
             drawSpot(168, 38);
 
-            // Отражение оранжево-стальной панели управления справа в зеркале (как на реальном фото!)
             ctx.fillStyle = '#ea580c';
             ctx.fillRect(212, 0, 7, 384);
             ctx.fillStyle = '#94a3b8';
@@ -1007,11 +844,9 @@
             ctx.fillStyle = '#ea580c';
             ctx.fillRect(241, 0, 7, 384);
 
-            // Синий экран индикатора в отражении
             ctx.fillStyle = '#2563eb';
             ctx.fillRect(225, 92, 10, 14);
 
-            // Тёмный проём дверей кабины в глубине отражения
             ctx.fillStyle = 'rgba(30, 41, 59, 0.38)';
             ctx.fillRect(58, 95, 118, 289);
 
@@ -1106,10 +941,10 @@
         uCabLight: { value: new THREE.Vector4(-5.50, 2.18, 2.60, 1.0) },
         uCeilingLights: {
             value: [
-                new THREE.Vector4(-1.20, 2.75, -0.70, 1.0), // Спальня
-                new THREE.Vector4( 4.20, 2.75,  0.40, 1.0), // Гостиная
-                new THREE.Vector4( 7.20, 2.75,  0.40, 1.0), // Кухня
-                new THREE.Vector4( 0.40, 2.75,  4.20, 1.0)  // Прихожая + Ванная
+                new THREE.Vector4(-1.20, 2.75, -0.70, 1.0),
+                new THREE.Vector4( 4.20, 2.75,  0.40, 1.0),
+                new THREE.Vector4( 7.20, 2.75,  0.40, 1.0),
+                new THREE.Vector4( 0.40, 2.75,  4.20, 1.0)
             ]
         }
     };
@@ -1238,13 +1073,11 @@
                         vec3 V = normalize(cameraPosition - vWorldPos);
                         float NdotV = max(dot(N, V), 0.001);
 
-                        // Мягкий рассеянный свет из окон + затенение у пола и потолка
                         float localY = fract(vWorldPos.y / 3.2);
                         float ao = smoothstep(0.0, 0.16, localY) * 0.22 + 0.78;
                         float skyDiff = max(dot(N, uSunDir), 0.0) * 0.36 + 0.24;
                         vec3 lighting = vec3(0.66, 0.75, 0.88) * skyDiff * ao;
 
-                        // Вклад 4 комнатных светильников
                         vec3 warmCeiling = vec3(1.0, 0.91, 0.78);
                         for (int i = 0; i < 4; i++) {
                             vec3 L = normalize(uCeilingLights[i].xyz - vWorldPos);
@@ -1252,28 +1085,23 @@
                             lighting += warmCeiling * diff * vLightWeights[i] * 0.85;
                         }
 
-                        // Прикроватный ночник
                         vec3 Lbed = normalize(uBedLamp.xyz - vWorldPos);
                         float diffBed = max(dot(N, Lbed), 0.0) * 0.75 + 0.25;
                         lighting += vec3(1.0, 0.74, 0.42) * diffBed * vBedWeight * 1.15;
 
-                        // Свет подъезда
                         vec3 Lstair = normalize(uStairLight.xyz - vWorldPos);
                         float diffStair = max(dot(N, Lstair), 0.0) * 0.75 + 0.25;
                         lighting += vec3(0.95, 0.94, 0.88) * diffStair * vStairWeight * 0.85;
 
-                        // Освещение кабины лифта
                         vec3 Lcab = normalize(uCabLight.xyz - vWorldPos);
                         float diffCab = max(dot(N, Lcab), 0.0) * 0.70 + 0.30;
                         lighting += vec3(1.0, 0.98, 0.95) * diffCab * vCabWeight * 1.15;
 
-                        // Естественное отражение окружения (студийные градиенты + световые полосы)
                         vec3 R = reflect(-V, N);
                         float skyRefl = smoothstep(-0.35, 0.85, R.y);
                         float studioBand = smoothstep(0.25, 0.95, abs(sin(R.y * 3.2 + R.x * 1.4))) * 0.24;
                         vec3 envColor = mix(vec3(0.22, 0.24, 0.28), vec3(0.95, 0.96, 0.98), skyRefl) + vec3(studioBand);
 
-                        // Изотропные и анизотропные блики (для шлифованной нержавеющей стали)
                         vec3 H = normalize(uSunDir + V);
                         float NdotH = max(dot(N, H), 0.0);
                         float shininess = mix(56.0, 6.0, uRoughness);
@@ -2527,13 +2355,11 @@
                 this.addStatic(cl, zone, 'ceiling', `ceiling_${zone}`);
             };
 
-            // 1. Полы и потолки 4 просторных комнат квартиры (7 этаж)
             addRoomFloorAndCeiling(-1.20, -0.70, 5.20, 5.00, this.mats.floorOak, 'bedroom');
             addRoomFloorAndCeiling( 5.60,  0.50, 7.20, 7.40, this.mats.floorOak, 'living');
             addRoomFloorAndCeiling( 0.00,  3.30, 4.00, 3.00, this.mats.floorOak, 'hallway');
             addRoomFloorAndCeiling( 1.10,  6.20, 3.00, 2.80, this.mats.bathTile, 'bathroom');
 
-            // 2. Внешние и межкомнатные стены
             this.addWallBox(-3.80, H / 2, -0.70, 0.20, H, 5.20, this.mats.wallPlaster, 'bedroom', 0, 'bedroom_west_wall');
 
             this.addWallBox(-3.40, H / 2, -3.20, 0.60, H, 0.20, this.mats.wallPlaster, 'bedroom', 0, 'bedroom_north_pier_left');
@@ -3056,7 +2882,6 @@
             const floorIndicators = [];
             const callButtonEntries = [];
 
-            // 7 этажей лестничной площадки (X: -4.75 .. -2.00, Z: 1.80 .. 5.40)
             for (let f = 1; f <= 7; f++) {
                 const yBase = getFloorBaseY(f);
                 const zone = `floor_${f}`;
@@ -3082,7 +2907,6 @@
                 lampBulb.position.set(-3.35, yBase + H - 0.05, 3.30);
                 this.addStatic(lampBulb, zone);
 
-                // Северная и южная стены лестничной клетки
                 const wallCx = f === 7 ? -4.375 : -3.375;
                 const wallW = f === 7 ? 0.95 : 2.95;
                 this.addWallBox(wallCx, yBase + H / 2, 1.80, wallW, H, 0.20, this.mats.stairWall, zone, yBase, `stair_${f}_north_wall`);
@@ -3090,7 +2914,6 @@
                 const southW = f === 7 ? 2.75 : 2.95;
                 this.addWallBox(southCx, yBase + H / 2, 5.40, southW, H, 0.20, this.mats.stairWall, zone, yBase, `stair_${f}_south_wall`);
 
-                // Табличка этажа
                 const floorSignTex = PBRTextureFactory.createSignTexture(
                     `ЭТАЖ ${f}`,
                     f === 7 ? 'ВАША КВАРТИРА' : 'ПОДЪЕЗД №1',
@@ -3105,7 +2928,6 @@
                 floorSign.position.set(-3.375, yBase + 1.88, 1.905);
                 this.addDynamic(floorSign, zone);
 
-                // Восточная стена и соседские квартиры
                 if (f < 7) {
                     this.addWallBox(-2.00, yBase + H / 2, 3.60, 0.20, H, 3.40, this.mats.stairWall, zone, yBase, `stair_${f}_east_wall`);
                     const aptA = (f - 1) * 4 + 1;
@@ -3133,7 +2955,6 @@
                     this.addCollider(-3.40, -2.10, 4.05, 5.30, 'stairs_rail', yBase - 0.2, yBase + 2.85);
                 }
 
-                // Западная стена с порталом лифта (X = -4.75, Z: 1.90 .. 5.30)
                 this.addWallBox(-4.75, yBase + H / 2, 1.975, 0.20, H, 0.15, this.mats.stairWall, zone, yBase, `stair_${f}_west_north`);
                 this.addWallBox(-4.75, yBase + H / 2, 4.225, 0.20, H, 2.15, this.mats.stairWall, zone, yBase, `stair_${f}_west_south`);
                 const headerH = H - 2.15;
@@ -3141,7 +2962,6 @@
                 headerWall.position.set(-4.75, yBase + 2.15 + headerH / 2, 2.60);
                 this.addStatic(headerWall, zone, 'wall', `stair_${f}_elevator_header`);
 
-                // Архитектурный портал лифта из шлифованной нержавеющей стали
                 const portalLeftJamb = new THREE.Mesh(new THREE.BoxGeometry(0.22, 2.16, 0.055), this.mats.brushedSteel);
                 portalLeftJamb.position.set(-4.74, yBase + 1.08, 2.075);
                 const portalRightJamb = new THREE.Mesh(new THREE.BoxGeometry(0.22, 2.16, 0.055), this.mats.brushedSteel);
@@ -3155,7 +2975,6 @@
                 this.addStatic(portalHeaderTrim, zone);
                 this.addStatic(landingSill, zone);
 
-                // Внешние раздвижные двери шахты лифта (матовая сталь шампань как на реальном фото)
                 const outerLeft = new THREE.Mesh(new THREE.BoxGeometry(0.036, 2.11, 0.52), this.mats.champagneSteel);
                 outerLeft.position.set(-4.74, yBase + 1.055, 2.34);
                 const outerRight = new THREE.Mesh(new THREE.BoxGeometry(0.036, 2.11, 0.52), this.mats.champagneSteel);
@@ -3164,7 +2983,6 @@
                 this.addDynamic(outerRight, zone);
                 floorOuterDoors[f] = { left: outerLeft, right: outerRight };
 
-                // Внешнее табло этажа над порталом в рамке из нержавейки
                 const indHousing = new THREE.Mesh(new THREE.BoxGeometry(0.025, 0.19, 0.36), this.mats.bronzeTrim);
                 indHousing.position.set(-4.64, yBase + 2.32, 2.60);
                 this.addStatic(indHousing, zone);
@@ -3182,7 +3000,6 @@
                 this.addDynamic(indMesh, zone);
                 floorIndicators.push({ canvas: indCanvas, tex: indTex });
 
-                // Вызывная панель на этаже (нержавейка + тактильная кнопка с красной подсветкой)
                 const callPlate = new THREE.Mesh(new THREE.BoxGeometry(0.02, 0.26, 0.12), this.mats.brushedSteel);
                 callPlate.position.set(-4.64, yBase + 1.15, 1.98);
                 this.addStatic(callPlate, zone);
@@ -3213,15 +3030,10 @@
                 }, zone);
             }
 
-            // Коллайдеры шахты лифта
             this.addCollider(-6.28, -4.75, 1.85, 2.05, 'shaft_north', -20, 4.0);
             this.addCollider(-6.28, -4.75, 3.15, 5.45, 'shaft_south', -20, 4.0);
             this.addCollider(-6.35, -6.15, 1.85, 3.25, 'shaft_west',  -20, 4.0);
 
-            // =========================================================================
-            // РЕАЛИСТИЧНАЯ КАБИНА ЛИФТА ПО РЕФЕРЕНСУ (СВЕТЛО-СЕРЫЕ ЭМАЛЕВЫЕ ПАНЕЛИ,
-            // АНИЗОТРОПНАЯ НЕРЖАВЕЙКА С ОРАНЖЕВЫМИ ВСТАВКАМИ, ЗЕРКАЛО И СИНИЙ ИНДИКАТОР)
-            // =========================================================================
             const cabGroup = new THREE.Group();
             cabGroup.position.set(0, 0, 0);
             this.addDynamic(cabGroup, 'elevator_cab');
@@ -3232,7 +3044,6 @@
             const cabCx = -5.50;
             const cabCz = 2.60;
 
-            // Пол из тёмного камня с геометрической рамкой + хромированный порог
             const cabFloor = new THREE.Mesh(new THREE.BoxGeometry(cabW, 0.06, cabD), this.mats.darkMetal);
             cabFloor.position.set(cabCx, -0.02, cabCz);
             const floorInlay = new THREE.Mesh(new THREE.BoxGeometry(cabW - 0.28, 0.004, cabD - 0.24), this.mats.terrazzoTile);
@@ -3241,7 +3052,6 @@
             cabSill.position.set(-4.87, 0.012, cabCz);
             cabGroup.add(cabFloor, floorInlay, cabSill);
 
-            // Светло-серый потолок со встроенными круглыми LED-светильниками
             const cabCeiling = new THREE.Mesh(new THREE.BoxGeometry(cabW, 0.06, cabD), this.mats.powderSteel);
             cabCeiling.position.set(cabCx, cabH, cabCz);
             cabGroup.add(cabCeiling);
@@ -3260,7 +3070,6 @@
                 cabGroup.add(trimRing, bulbLens);
             });
 
-            // Задняя стена кабины (X = -6.15): полуматовые светло-серые эмалевые панели с вертикальными швами
             const cabBack = new THREE.Mesh(new THREE.BoxGeometry(0.05, cabH, cabD), this.mats.powderSteel);
             cabBack.position.set(cabCx - cabW / 2, cabH / 2, cabCz);
             cabGroup.add(cabBack);
@@ -3274,7 +3083,6 @@
             topTransomSeam.position.set(cabCx - cabW / 2 + 0.026, 1.98, cabCz);
             cabGroup.add(topTransomSeam);
 
-            // Нижний тёмный плинтус по периметру кабины
             const kickBack = new THREE.Mesh(new THREE.BoxGeometry(0.014, 0.11, cabD - 0.02), this.mats.darkMetal);
             kickBack.position.set(cabCx - cabW / 2 + 0.028, 0.055, cabCz);
             const kickNorth = new THREE.Mesh(new THREE.BoxGeometry(cabW - 0.02, 0.11, 0.014), this.mats.darkMetal);
@@ -3283,7 +3091,6 @@
             kickSouth.position.set(cabCx, 0.055, cabCz + cabD / 2 - 0.028);
             cabGroup.add(kickBack, kickNorth, kickSouth);
 
-            // Безрамное зеркало на задней стене с 4 круглыми хромированными держателями
             const cabMirror = new THREE.Mesh(new THREE.PlaneGeometry(0.86, 1.04), this.mats.elevatorMirror);
             cabMirror.rotation.y = Math.PI / 2;
             cabMirror.position.set(cabCx - cabW / 2 + 0.032, 1.44, cabCz);
@@ -3296,7 +3103,6 @@
                 cabGroup.add(clip);
             });
 
-            // Цилиндрический хромированный поручень на всю ширину с закруглёнными торцами
             const railX = cabCx - cabW / 2 + 0.082;
             const railY = 0.85;
             const cabRail = new THREE.Mesh(new THREE.CylinderGeometry(0.020, 0.020, 0.94, 16), this.mats.chromeMetal);
@@ -3313,7 +3119,6 @@
                 cabGroup.add(endCap, bracket);
             });
 
-            // Боковые стены кабины из светло-серых эмалевых панелей с вертикальными швами
             const cabNorthWall = new THREE.Mesh(new THREE.BoxGeometry(cabW, cabH, 0.05), this.mats.powderSteel);
             cabNorthWall.position.set(cabCx, cabH / 2, cabCz - cabD / 2);
             const cabSouthWall = new THREE.Mesh(new THREE.BoxGeometry(cabW, cabH, 0.05), this.mats.powderSteel);
@@ -3326,7 +3131,6 @@
                 cabGroup.add(seamS);
             });
 
-            // Двустворчатые раздвижные двери кабины (матовая сталь шампань + центральный резиновый уплотнитель)
             const cabDoorLeft = new THREE.Mesh(new THREE.BoxGeometry(0.032, 2.12, 0.52), this.mats.champagneSteel);
             cabDoorLeft.position.set(-4.84, 1.06, 2.34);
             const doorSealL = new THREE.Mesh(new THREE.BoxGeometry(0.036, 2.12, 0.012), this.mats.darkMetal);
@@ -3340,10 +3144,6 @@
             cabDoorRight.add(doorSealR);
             cabGroup.add(cabDoorLeft, cabDoorRight);
 
-            // =========================================================================
-            // ВЕРТИКАЛЬНАЯ ПАНЕЛЬ УПРАВЛЕНИЯ (COP) ОТ ПОЛА ДО ПОТОЛКА В СТИЛЕ ФОТО 120967:
-            // Две яркие оранжевые вертикальные полосы + центральная колонна из шлифованной нержавейки
-            // =========================================================================
             const copX = -5.22;
             const copZ = 2.078;
 
@@ -3356,13 +3156,11 @@
             steelColumn.position.set(copX, cabH / 2, copZ + 0.001);
             cabGroup.add(orangeLeft, orangeRight, steelColumn);
 
-            // Верхний стальной шильдик грузоподъёмности (5 ЧЕЛ • 400 КГ)
             const specTex = PBRTextureFactory.createSignTexture('5 ЧЕЛ • 400 КГ', 'ЛИФТ ПАССАЖИРСКИЙ', '#cbd5e1', '#1e293b', '#475569');
             const specPlaque = new THREE.Mesh(new THREE.PlaneGeometry(0.155, 0.068), new THREE.MeshBasicMaterial({ map: specTex }));
             specPlaque.position.set(copX, 1.88, copZ + 0.007);
             cabGroup.add(specPlaque);
 
-            // Синий матричный LED-индикатор этажей в хромированной рамке
             const dispBezel = new THREE.Mesh(new THREE.BoxGeometry(0.115, 0.135, 0.012), this.mats.chromeMetal);
             dispBezel.position.set(copX, 1.69, copZ + 0.007);
             cabGroup.add(dispBezel);
@@ -3378,7 +3176,6 @@
             cabIndMesh.position.set(copX, 1.69, copZ + 0.014);
             cabGroup.add(cabIndMesh);
 
-            // Круглая перфорация переговорного устройства под индикатором
             for (let a = 0; a < 8; a++) {
                 const ang = (a / 8) * Math.PI * 2;
                 const hole = new THREE.Mesh(new THREE.CircleGeometry(0.0032, 8), this.mats.darkMetal);
@@ -3386,7 +3183,6 @@
                 cabGroup.add(hole);
             }
 
-            // 7 круглых кнопок этажей из нержавейки с КРАСНОЙ кольцевой LED-подсветкой
             const cabButtons = [];
             for (let f = 1; f <= 7; f++) {
                 const row = Math.floor((f - 1) / 2);
@@ -3441,7 +3237,6 @@
                 }, 'elevator_cab');
             }
 
-            // Нижний ряд служебных кнопок: «Открыть двери (◄|►)» и «Закрыть двери (►|◄)»
             const doorCtrlSpecs = [
                 { type: 'elevator_door_open',  sym: '◄|►', label: 'Открыть двери лифта', bx: copX - 0.044 },
                 { type: 'elevator_door_close', sym: '►|◄', label: 'Закрыть двери лифта', bx: copX + 0.044 }
@@ -3739,7 +3534,6 @@
             this.stageEl.classList.remove('hidden');
             document.body.classList.add('fullscreen-locked');
 
-            // Запрашиваем нативный полноэкранный режим браузера (с безопасным фоллбэком на CSS fixed inset-0)
             const fsTarget = document.documentElement;
             if (fsTarget && fsTarget.requestFullscreen && !document.fullscreenElement) {
                 fsTarget.requestFullscreen().catch(() => {});
@@ -3778,7 +3572,6 @@
                     const loader = document.getElementById('loading-screen');
                     if (loader) loader.style.display = 'none';
 
-                    // Предварительный прогрев шейдеров до нажатия «ИГРАТЬ»
                     this.renderer.render(this.scene, this.camera);
                 } catch (err) {
                     const statusEl = document.getElementById('loading-status');
@@ -4324,7 +4117,6 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-        AdMonetizationManager.bindConfigUI();
         AdMonetizationManager.init();
         window.gameApp = new ApartmentController();
     });
